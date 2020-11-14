@@ -44,8 +44,9 @@ class App extends React.Component {
 		return (
 			<div className="App">
 				<h1 className="dashboard">Covid 2019 Dashboard</h1>
-				<p className="text-white">
-					This dashboard is powered by data from <a href="https://covid19-api.org/">Covid19-API.org</a>
+				<p className="text-beige">
+					This dashboard is powered by data from <a href="https://covid19-api.org/">Covid19 API.org</a> and
+					flags from <a href="https://www.countryflags.io">Country Flags.io</a>
 				</p>
 				<SearchBox
 					placeholder="              Search by country name.."
