@@ -1,8 +1,8 @@
 {
-  "name": "newdash",
+  "name": "covidash",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://siechristian.github.io/newdash",
+  "homepage": "https://siechristian.github.io/covidash",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.2",
@@ -44,7 +44,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/siechristian/covidcountries.git"
+    "url": "git+https://github.com/siechristian/covidash.git"
   },
   "keywords": [
     "dash"
