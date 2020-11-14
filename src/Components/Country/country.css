@@ -1,0 +1,38 @@
+.country {
+	width: 100%;
+	display: grid;
+	flex-direction: column;
+	align-items: center;
+	background: #141e30;
+	background: -webkit-linear-gradient(160deg, #e9967a, #1ebea5);
+	background: linear-gradient(160deg, #e9967a, #1ebea5);
+	color: #1e1e1e;
+	font-family: 'Poppins';
+	border-radius: 10px;
+	transition: all 1s ease-in-out;
+	cursor: pointer;
+	margin-top: 5rem;
+}
+
+.country:hover {
+	transform: scale(1.1);
+}
+
+.country > img {
+	width: 33%;
+	height: auto;
+	margin: auto;
+}
+
+.country > h2 {
+	text-align: center;
+}
+
+.cases {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 0.5rem;
+	margin: auto;
+	width: 95%;
+	font-family: 'Poppins';
+}
