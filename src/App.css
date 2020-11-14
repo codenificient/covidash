@@ -29,18 +29,6 @@ body {
 	background: var(--bg-grey2);
 }
 
-footer {
-	color: var(--bg-main);
-	justify-content: center;
-	text-align: center;
-	font-family: 'Niconne';
-	background-color: var(--bg-grey1);
-	height: 100px;
-	font-size: 2rem;
-	padding: 3rem;
-	margin-top: 3rem;
-}
-
 a,
 .text-beige {
 	margin-bottom: 3rem;
