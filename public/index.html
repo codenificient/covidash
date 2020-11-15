@@ -83,37 +83,37 @@ footer {
   }
   
 	.up {
-		position: absolute;
-		width: 2.3rem;
-		height: 2.3rem;
-		background-color: var(--bg-grey1);
-		top: -3rem;
+		top: -6rem;
 		right: 15%;
-		border-radius: 100%;
-		animation: pulse 2s infinite;
 	}
 
-	.up i {
-		color: var(--bg-main);
-		font-size: 3rem;
-		max-width: auto;
-  }
-  /*Start animations*/
-	.down {
-		position: absolute;
-		width: 2.3rem;
-		height: 2.3rem;
-		background-color: var(--bg-grey1);
+  .down {
 		top: 16rem;
-		right: 15%;
+    right: 15%;
+ 
+  }
+
+  /*Start animations*/
+  .down,
+  .up {
+		position: absolute;
+		width: 3.4rem;
+		height: 3.4rem;
+		background-color: aqua;
 		border-radius: 100%;
 		animation: pulse 2s infinite;
 	}
 
-	.down i {
-		color: var(--bg-main);
+  .down i,
+  .up i {
+		color: var(--bg-grey1);
 		font-size: 3rem;
-		max-width: auto;
+    max-width: auto;
+    margin: auto;
+  }
+
+  .down i {
+    transform: translate(6px, 3px);
   }
   /*Start animations*/
 
