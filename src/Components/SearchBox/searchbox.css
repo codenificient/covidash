@@ -1,6 +1,19 @@
+.search-box {
+	width: 35%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .search {
 	font-family: 'Poppins';
-	border-radius: 1rem;
-	font-size: 1.6rem;
-	padding: 0.3rem;
+	border-radius: 3rem;
+	font-size: 1.5rem;
+	padding: 0.5rem;
+	cursor: pointer;
+}
+
+input {
+	text-align: center;
+	width: 100%;
 }

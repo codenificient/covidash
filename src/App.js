@@ -27,7 +27,7 @@ class App extends React.Component {
 			const deceased = parseInt(data.deaths);
 			const actives = total - (healthy + deceased);
 			const countryCode = data.country;
-			console.log(actives);
+			// console.log(actives);
 
 			// the data is missing country name. make another request to fetch country name
 			const resp = await fetch(`https://covid19-api.org/api/country/${country.alpha2}`);
@@ -38,7 +38,7 @@ class App extends React.Component {
 			// console.log(data);
 			if (data)
 				this.setState((prevState) => ({
-					stats: prevState.stats.concat({ countryCode, total, healthy, deceased, actives, name })
+					stats: prevState.stats.concat({ name, countryCode, total, healthy, deceased, actives })
 				}));
 		});
 	}
@@ -55,7 +55,7 @@ class App extends React.Component {
 					flags from <a href="https://www.countryflags.io">Country Flags.io</a>
 				</p>
 				<SearchBox
-					placeholder="              Search by country name.."
+					placeholder="Search by country name.."
 					handleChange={this.handleChange}
 					className="search-box"
 				/>
