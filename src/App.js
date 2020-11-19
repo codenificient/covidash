@@ -49,8 +49,8 @@ class App extends React.Component {
 		const filteredCountries = stats.filter((stats) => stats.name.toLowerCase().includes(searchField.toLowerCase()));
 		return (
 			<div className="App">
-				<h1 className="dashboard">Covid 2019 Dashboard</h1>
-				<p className="text-beige">
+				<h1 className="dashboard text-center">Covid 2019 Dashboard</h1>
+				<p className="text-beige text-center">
 					This dashboard is powered by data from{' '}
 					<a href="https://covid19-api.org/" target="_blank">
 						Covid19 API.org
@@ -68,7 +68,7 @@ class App extends React.Component {
 
 				<CountryList stats={filteredCountries} />
 
-				<div className="allproject">
+				<div className="allproject text-center">
 					<a href="https://tioye.dev/dist/projects/allproject.html" target="_blank" rel="noreferrer">
 						View my other projects
 					</a>

@@ -17,3 +17,32 @@ input {
 	text-align: center;
 	width: 100%;
 }
+
+@media screen and (orientation: portrait) and (min-width: 0px) and (max-width: 360px) {
+	.search-box {
+		width: 100%;
+		transform: translateY(85%);
+	}
+
+	.search {
+		font-size: 1.2rem;
+	}
+}
+
+@media screen and (orientation: portrait) and (min-width: 361px) {
+	.search-box {
+		width: 100%;
+		transform: translateY(95%);
+	}
+
+	.search {
+		font-size: 1.2rem;
+	}
+}
+
+@media screen and (orientation: landscape) {
+	.search-box {
+		width: 55%;
+		transform: translateX(-60px);
+	}
+}

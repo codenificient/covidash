@@ -65,15 +65,15 @@
   	--beige: rgba(230, 180, 163, 0.685);
   }
 
-footer {
-  background-color:var(--bg-grey1);
-	color: var(--bg-main);
-	justify-content: center;
-	text-align: center;
-	font-family: 'Niconne';
-	height: 150px;
-	margin-top: 7rem;
-}
+  footer {
+    background-color:var(--bg-grey1);
+    color: var(--bg-main);
+    justify-content: center;
+    text-align: center;
+    font-family: 'Niconne';
+    height: 150px;
+    margin-top: 7rem;
+  }
 
 
 	.copyright p {
@@ -90,7 +90,6 @@ footer {
   .down {
 		top: 16rem;
     right: 15%;
- 
   }
 
   /*Start animations*/
@@ -117,42 +116,116 @@ footer {
   }
   /*Start animations*/
 
-@keyframes pulse {
-	0% {
-		box-shadow: 0 0 0 0 rgba(250, 128, 114, .99);
-	}
-	70% {
-		box-shadow: 0 0 0 2rem rgba(250, 128, 114, 0);
-	}
-	100% {
-		box-shadow: 0 0 0 0 rgba(250, 128, 114, 0);
-	}
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(250, 128, 114, .99);
+    }
+    70% {
+      box-shadow: 0 0 0 2rem rgba(250, 128, 114, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(250, 128, 114, 0);
+    }
+  }
+
+  @keyframes animated {
+    0% {
+      background-size: 10%;
+    }
+    100% {
+      background-size: 400%;
+    }
+  }
+
+  @keyframes animate {
+    0% {
+      background-position: 0%;
+    }
+
+    100% {
+      background-position: 400%;
+    }
+  }
+
+@media screen and (orientation: portrait) and (min-width: 0px) and (max-width: 600px) {
+	
+	.down {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .down i {
+    font-size: 2.5rem;
+    transform: translate(2px, 2px);
+  }
+
+  .up {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .up i {
+    font-size: 2.5rem;
+  }
+
+    .copyright p {
+    font-size: 1.4rem;
+  }
+
+  .allproject {
+    font-size: 1.35rem;
+    display: inline-block;
+    margin: 6rem 0;
+  }
+  
 }
 
-@keyframes animated {
-	0% {
-		background-size: 10%;
-	}
-	100% {
-		background-size: 400%;
-	}
-}
+  @media only screen and (orientation: portrait) and (min-width: 280px) and (max-width: 653px) {
+    .down {
+      top: 24rem;
+    }
+  }
 
-@keyframes animate {
-	0% {
-		background-position: 0%;
-	}
+  @media screen and (orientation: portrait) and (min-width: 654px) and (max-width: 767px;) {
+    .down {
+      top: 14rem;
+    }
+  }
 
-	100% {
-		background-position: 400%;
-	}
-}
 
-.clearfix {
-	clear: both;
-}
+  @media screen and (orientation: portrait) and (min-width: 768px)  {
+    .down {
+      top: 14rem;
+      right: 8%;
+    }
+
+    .up {
+      right: 8%;
+    }
+  }
+
+    @media screen and (orientation: landscape) and (min-width: 450px) and (max-width: 1099px)  {
+    .down {
+      top: 16rem;
+      right: 8%;
+    }
+  }
+    @media screen and (orientation: landscape) and (min-width: 1100px)  {
+    .down {
+      top: 14rem;
+      right: 8%;
+    }
+  }
+
+
+  .clearfix {
+    clear: both;
+  }
+
+
 
 </style>
+
   <div id="bottom"></div>
   <footer class="copyright bg-grey col-md-12 col-xs-12">
     <a href="#top">

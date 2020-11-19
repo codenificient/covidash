@@ -43,3 +43,13 @@
 	font-family: 'Poppins';
 	align-self: center;
 }
+
+@media screen and (orientation: portrait) and (max-width: 767px) {
+	.search-box {
+		width: 100%;
+	}
+
+	.search {
+		font-size: 1.2rem;
+	}
+}
