@@ -22,6 +22,12 @@ class App extends React.Component {
 			// get the latest data about each country
 			const response = await fetch(`https://covid19-api.org/api/status/${country.alpha2}`);
 			const data = await response.json();
+			const total = parseInt(data.cases);
+			const healthy = parseInt(data.recovered);
+			const deceased = parseInt(data.deaths);
+			const actives = total - (healthy + deceased);
+			const countryCode = data.country;
+			console.log(actives);
 
 			// the data is missing country name. make another request to fetch country name
 			const resp = await fetch(`https://covid19-api.org/api/country/${country.alpha2}`);
@@ -32,7 +38,7 @@ class App extends React.Component {
 			// console.log(data);
 			if (data)
 				this.setState((prevState) => ({
-					stats: prevState.stats.concat({ data, name })
+					stats: prevState.stats.concat({ countryCode, total, healthy, deceased, actives, name })
 				}));
 		});
 	}
