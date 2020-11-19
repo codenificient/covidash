@@ -3,7 +3,9 @@ import './countryList.css';
 
 const CountryList = ({ stats }) => {
 	return (
-		<div className="showCountry">{stats.map((country) => <Country key={country.countryCode} stats={country} />)}</div>
+		<div className="showCountry">
+			{stats.map((country) => <Country key={country.countryCode} stats={country} />)}
+		</div>
 	);
 };
 
