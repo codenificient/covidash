@@ -17,13 +17,13 @@ class App extends React.Component {
 		const response = await fetch('https://www.trackcorona.live/api/countries');
 		const countries = await response.json();
 		this.setState({ countries });
-		console.log({countries});
+		console.log({ countries });
 		this.state.countries.data.map(async (country) => {
 			// get the latest data about each country
 			const total = parseInt(country.confirmed);
 			const healthy = parseInt(country.recovered);
 			const deceased = parseInt(country.dead);
-			const actives = total - (deceased + healthy)
+			const actives = total - (deceased + healthy);
 			const countryCode = country.country_code;
 			// console.log(actives);
 
@@ -31,7 +31,7 @@ class App extends React.Component {
 			const name = country.location;
 
 			// console.log(name);
-			console.log({country});
+			console.log({ country });
 			if (country)
 				this.setState((prevState) => ({
 					stats: prevState.stats.concat({ name, countryCode, total, healthy, deceased, actives })
@@ -49,7 +49,7 @@ class App extends React.Component {
 				<p className="text-beige text-center">
 					This dashboard is powered by data from{' '}
 					<a href="https://www.trackcorona.live/" target="_blank">
-						Covid19 API.org
+						TrackCorona
 					</a>{' '}
 					and flags from{' '}
 					<a href="https://www.countryflags.io" target="_blank">

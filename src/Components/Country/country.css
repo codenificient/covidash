@@ -11,11 +11,17 @@
 	border-radius: 15px;
 	transition: all 1s ease-in-out;
 	cursor: pointer;
-	margin-top: 5rem;
+	margin-top: 4rem;
 }
 
 .country:hover {
 	transform: scale(1.1);
+}
+
+.qty {
+	color: brown;
+	font-size: small;
+	font-weight: bold;
 }
 
 .country > img {
