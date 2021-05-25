@@ -14,29 +14,25 @@ class App extends React.Component {
 	}
 
 	async componentDidMount() {
-		const response = await fetch('https://covid19-api.org/api/countries');
+		const response = await fetch('https://www.trackcorona.live/api/countries');
 		const countries = await response.json();
 		this.setState({ countries });
-		// console.log(countries);
-		this.state.countries.forEach(async (country) => {
+		console.log({countries});
+		this.state.countries.data.map(async (country) => {
 			// get the latest data about each country
-			const response = await fetch(`https://covid19-api.org/api/status/${country.alpha2}`);
-			const data = await response.json();
-			const total = parseInt(data.cases);
-			const healthy = parseInt(data.recovered);
-			const deceased = parseInt(data.deaths);
-			const actives = total - (healthy + deceased);
-			const countryCode = data.country;
+			const total = parseInt(country.confirmed);
+			const healthy = parseInt(country.recovered);
+			const deceased = parseInt(country.dead);
+			const actives = total - (deceased + healthy)
+			const countryCode = country.country_code;
 			// console.log(actives);
 
 			// the data is missing country name. make another request to fetch country name
-			const resp = await fetch(`https://covid19-api.org/api/country/${country.alpha2}`);
-			const respjs = await resp.json();
-			const name = respjs.name;
+			const name = country.location;
 
 			// console.log(name);
-			// console.log(data);
-			if (data)
+			console.log({country});
+			if (country)
 				this.setState((prevState) => ({
 					stats: prevState.stats.concat({ name, countryCode, total, healthy, deceased, actives })
 				}));
@@ -52,7 +48,7 @@ class App extends React.Component {
 				<h1 className="dashboard text-center">Covid 2019 Dashboard</h1>
 				<p className="text-beige text-center">
 					This dashboard is powered by data from{' '}
-					<a href="https://covid19-api.org/" target="_blank">
+					<a href="https://www.trackcorona.live/" target="_blank">
 						Covid19 API.org
 					</a>{' '}
 					and flags from{' '}
