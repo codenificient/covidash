@@ -17,7 +17,7 @@ class App extends React.Component {
 		const response = await fetch('https://www.trackcorona.live/api/countries');
 		const countries = await response.json();
 		this.setState({ countries });
-		console.log({ countries });
+		// console.log({ countries });
 		this.state.countries.data.map(async (country) => {
 			// get the latest data about each country
 			const total = parseInt(country.confirmed);
@@ -31,7 +31,7 @@ class App extends React.Component {
 			const name = country.location;
 
 			// console.log(name);
-			console.log({ country });
+			// console.log({ country });
 			if (country)
 				this.setState((prevState) => ({
 					stats: prevState.stats.concat({ name, countryCode, total, healthy, deceased, actives })
