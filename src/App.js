@@ -22,8 +22,8 @@ class App extends React.Component {
 			// get the latest data about each country
 			const total = parseInt(country.confirmed);
 			const healthy = parseInt(country.recovered);
-			const deceased = parseInt(country.dead);
-			const actives = total - (deceased + healthy);
+			const dead = parseInt(country.dead);
+			const actives = total - (dead + healthy);
 			const countryCode = country.country_code;
 			// console.log(actives);
 
@@ -34,7 +34,7 @@ class App extends React.Component {
 			// console.log({ country });
 			if (country)
 				this.setState((prevState) => ({
-					stats: prevState.stats.concat({ name, countryCode, total, healthy, deceased, actives })
+					stats: prevState.stats.concat({ name, countryCode, total, healthy, dead, actives })
 				}));
 		});
 	}

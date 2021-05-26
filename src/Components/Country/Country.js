@@ -13,15 +13,15 @@ const Country = ({ stats }) => {
 				</p>
 				<p>
 					{`Active : `}
-					<span className="qty">{stats.total}</span>
+					<span className="qty">{stats.actives}</span>
 				</p>
 				<p>
 					{`Deaths : `}
-					<span className="qty">{stats.total}</span>
+					<span className="qty">{stats.dead}</span>
 				</p>
 				<p>
 					{`Recovered : `}
-					<span className="qty">{stats.total}</span>
+					<span className="qty">{stats.healthy}</span>
 				</p>
 			</div>
 		</div>
