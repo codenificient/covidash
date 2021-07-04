@@ -84,7 +84,7 @@
   }
   
 	.up {
-		top: -6rem;
+		top: -8rem;
 		right: 15%;
 	}
 
@@ -102,6 +102,7 @@
 		background-color: aqua;
 		border-radius: 100%;
 		animation: pulse 2s infinite;
+    z-index: 10;
 	}
 
   .down i,
@@ -236,12 +237,13 @@
 </style>
 
   <div id="bottom"></div>
-  <footer class="copyright bg-grey col-md-12 col-xs-12">
-    <a href="#top">
+  <a href="#top">
         <div class="up" id="up">
             <i class="fas fa-chevron-up"></i>
         </div>
     </a>
+  <footer class="copyright bg-grey col-md-12 col-xs-12">
+    
     <p>Copyright &copy;  2019 - <script> document.write(new Date().getFullYear()) </script>  *   CodenificienT by Christian Tioye&#769; * All Rights Reserved </p>
 </footer>
 </html>
