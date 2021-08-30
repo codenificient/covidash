@@ -1,31 +1,113 @@
-import React from 'react';
-import './country.css';
+import React from "react";
+import "./country.css";
+
 
 const Country = ({ stats }) => {
-	return (
-		<div className="country">
-			<img src={`https://www.countryflags.io/${stats.countryCode}/flat/64.png`} alt={`Flag of ${stats.name}`} />
-			<h2>{stats.name}</h2>
-			<div className="cases">
-				<p>
-					{`Confirmed : `}
-					<span className="qty">{stats.total}</span>
-				</p>
-				<p>
-					{`Active : `}
-					<span className="qty">{stats.actives}</span>
-				</p>
-				<p>
-					{`Deaths : `}
-					<span className="qty">{stats.dead}</span>
-				</p>
-				<p>
-					{`Recovered : `}
-					<span className="qty">{stats.healthy}</span>
-				</p>
-			</div>
-		</div>
-	);
+	const flagged = new Map();
+  flagged.set("Zimbabwe", "ZW");
+  flagged.set("Zambia", "ZM");
+  flagged.set("South Africa", "ZA");
+  flagged.set("Mayotte", "YT");
+  flagged.set("Yemen", "YE");
+  flagged.set("Samoa", "ws");
+  flagged.set("Wallist and Futura", "wf");
+  flagged.set("Vanuatu", "VU");
+  flagged.set("Vietnam", "VN");
+  flagged.set("Virgin Islands", "VI");
+  flagged.set("Venezuela", "VE");
+  flagged.set("Saint Vincent and the Grenadines", "VC");
+  flagged.set("Italy", "IT");
+  flagged.set("Bangladesh", "BD");
+  flagged.set("Jersey", "JE");
+  flagged.set("Iceland", "IS");
+  flagged.set("Israel", "IL");
+  flagged.set("Burundi", "BI");
+  flagged.set("Cabo Verde", "CV");
+  flagged.set("Congo (Kinshasa)", "CD");
+  flagged.set("Congo (Brazzaville)", "CG");
+  flagged.set("Comoros", "KM");
+  flagged.set("Colombia", "CO");
+  flagged.set("Canada", "ca");
+  flagged.set("Angola", "AO");
+  flagged.set("Algeria", "dz");
+  flagged.set("Antigua and Barbuda", "AG");
+  flagged.set("Argentina", "AR");
+  flagged.set("Armenia", "AM");
+  flagged.set("Australia", "AU");
+  flagged.set("Austria", "at");
+  flagged.set("Bahrain", "BH");
+  flagged.set("Bahamas", "BS");
+  flagged.set("Benin", "BJ");
+  flagged.set("Belgium", "BE");
+  flagged.set("Central African Republic", "CF");
+  flagged.set("Grenada", "GD");
+  flagged.set("Greece", "GR");
+  flagged.set("Ireland", "IE");
+  flagged.set("Iraq", "IQ");
+  flagged.set("Iran", "IR");
+  flagged.set("Jamaica", "JM");
+  flagged.set("Mali", "ML");
+  flagged.set("Malta", "MT");
+  flagged.set("Kazakhstan", "KZ");
+  flagged.set("Denmark", "dk");
+  flagged.set("Guinea", "GN");
+  flagged.set("Guinea-Bissau", "GW");
+  flagged.set("Equatorial Guinea", "GQ");
+  flagged.set("Poland", "PL");
+  flagged.set("Suriname", "SR");
+  flagged.set("Switzerland", "CH");
+  flagged.set("Sierra Leone", "SL");
+  flagged.set("Slovenia", "SI");
+  flagged.set("Slovakia", "SK");
+  flagged.set("Uruguay", "UY");
+  flagged.set("Ukraine", "UA");
+  flagged.set("Turkey", "TR");
+  flagged.set("Tunisia", "TN");
+  flagged.set("Sudan", "SD");
+  flagged.set("South Sudan", "SS");
+  flagged.set("Bosnia and Herzegovina", "BA");
+  flagged.set("Micronesia", "MS");
+  flagged.set("Isle of Man", "IM");
+  flagged.set("Korea, South", "KR");
+  flagged.set("Solomon Islands", "SB");
+  flagged.set("Sweden", "SE");
+  flagged.set("Serbia", "RS");
+  flagged.set("Brunei", "BN");
+  flagged.set("Belarus", "BY");
+  flagged.set("Belize", "BZ");
+  flagged.set("Barbados", "BB");
+  flagged.set("Andorra", "AD");
+  flagged.set("Summer Olympics 2020", "CX");
+
+//   console.log(flagged);
+const query = flagged.get(stats.name) || stats.countryCode
+  return (
+    <div className="country">
+      <img
+        src={`https://www.countryflags.io/${query}/flat/64.png`}
+        alt={`Flag of ${stats.name}`}
+      />
+      <h2>{stats.name}</h2>
+      <div className="cases">
+        <p>
+          {`Confirmed : `}
+          <span className="qty">{stats.total}</span>
+        </p>
+        <p>
+          {`Active : `}
+          <span className="qty">{stats.actives}</span>
+        </p>
+        <p>
+          {`Deaths : `}
+          <span className="qty">{stats.dead}</span>
+        </p>
+        <p>
+          {`Recovered : `}
+          <span className="qty">{stats.healthy}</span>
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default Country;
