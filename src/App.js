@@ -24,17 +24,18 @@ class App extends React.Component {
 
     console.log(responseJSON);
     this.setState({
-		countries: responseJSON
-	})
-
+      countries: responseJSON,
+    });
 
     this.state.countries.map(async (country) => {
       // get the latest data about each country
       const total = parseInt(country.Confirmed, 10);
-      const healthy = parseInt(country.Recovered, 10) ? parseInt(country.Recovered, 10) : 0;
+      const healthy = parseInt(country.Recovered, 10)
+        ? parseInt(country.Recovered, 10)
+        : 0;
       const dead = parseInt(country.Deaths, 10);
       const actives = total - (dead + healthy);
-      const countryCode = country.ISO3.substring(0,2);
+      const countryCode = country.ISO3.substring(0, 2);
       // console.log(actives);
 
       // the data is missing country name. make another request to fetch country name
@@ -59,16 +60,20 @@ class App extends React.Component {
 
   render() {
     const { searchField, stats } = this.state;
-    const filteredCountries = stats.filter((stats) =>
-      stats.name.toLowerCase().includes(searchField.toLowerCase())
+    const filteredCountries = stats.filter((stat) =>
+      stat.name.toLowerCase().includes(searchField.toLowerCase())
     );
     return (
       <div className="App">
         <h1 className="dashboard text-center">Covid 2019 Dashboard</h1>
         <p className="text-beige text-center">
           This dashboard is powered by data from{" "}
-          <a href="" target="_blank" rel="noopener noreferrer">
-            John Hopkins
+          <a
+            href="https://github.com/CSSEGISandData/COVID-19"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            John Hopkins University
           </a>{" "}
           and flags from{" "}
           <a

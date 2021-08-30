@@ -78,6 +78,12 @@ const Country = ({ stats }) => {
   flagged.set("Barbados", "BB");
   flagged.set("Andorra", "AD");
   flagged.set("Summer Olympics 2020", "CX");
+  flagged.set("Eswatini", "SZ");
+  flagged.set("Diamond Princess", "MF");
+  flagged.set("Libya", "LY");
+  flagged.set("Liberia", "LR");
+  flagged.set("MS Zaandam", "AH");
+  flagged.set("West Bank and Gaza", "cc");
 
 //   console.log(flagged);
 const query = flagged.get(stats.name) || stats.countryCode
@@ -93,18 +99,18 @@ const query = flagged.get(stats.name) || stats.countryCode
           {`Confirmed : `}
           <span className="qty">{stats.total}</span>
         </p>
-        <p>
+        {/* <p>
           {`Active : `}
           <span className="qty">{stats.actives}</span>
-        </p>
+        </p> */}
         <p>
           {`Deaths : `}
           <span className="qty">{stats.dead}</span>
         </p>
-        <p>
+        {/* <p>
           {`Recovered : `}
           <span className="qty">{stats.healthy}</span>
-        </p>
+        </p> */}
       </div>
     </div>
   );
