@@ -65,7 +65,7 @@ class App extends React.Component {
 				<CountryList stats={filteredCountries} />
 
 				<div className="allproject text-center">
-					<a href="https://tioye.dev/dist/projects/allproject.html" target="_blank" rel="noreferrer">
+					<a href="https://tioye.dev/pages/projects/allproject.html" target="_blank" rel="noreferrer">
 						View my other projects
 					</a>
 				</div>
