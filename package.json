@@ -2,7 +2,7 @@
   "name": "covidash",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://siechristian.github.io/covidash",
+  "homepage": "https://codenificient.github.io/covidash",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.2",
@@ -30,7 +30,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/siechristian/covidash.git"
+    "url": "git+https://github.com/codenificient/covidash.git"
   },
   "keywords": [
     "dash"
@@ -38,6 +38,6 @@
   "author": "Christian Tioye",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/siechristian/covidash/issues"
+    "url": "https://github.com/codenificient/covidash/issues"
   }
 }
