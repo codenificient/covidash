@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/covidash/static/css/main.cbeae904.chunk.css",
-    "main.js": "/covidash/static/js/main.8344a78f.chunk.js",
-    "main.js.map": "/covidash/static/js/main.8344a78f.chunk.js.map",
+    "main.css": "/covidash/static/css/main.3d823657.chunk.css",
+    "main.js": "/covidash/static/js/main.a012663a.chunk.js",
+    "main.js.map": "/covidash/static/js/main.a012663a.chunk.js.map",
     "runtime-main.js": "/covidash/static/js/runtime-main.1102bd4a.js",
     "runtime-main.js.map": "/covidash/static/js/runtime-main.1102bd4a.js.map",
     "static/js/2.e0b0c623.chunk.js": "/covidash/static/js/2.e0b0c623.chunk.js",
     "static/js/2.e0b0c623.chunk.js.map": "/covidash/static/js/2.e0b0c623.chunk.js.map",
     "index.html": "/covidash/index.html",
-    "static/css/main.cbeae904.chunk.css.map": "/covidash/static/css/main.cbeae904.chunk.css.map",
+    "static/css/main.3d823657.chunk.css.map": "/covidash/static/css/main.3d823657.chunk.css.map",
     "static/js/2.e0b0c623.chunk.js.LICENSE.txt": "/covidash/static/js/2.e0b0c623.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1102bd4a.js",
     "static/js/2.e0b0c623.chunk.js",
-    "static/css/main.cbeae904.chunk.css",
-    "static/js/main.8344a78f.chunk.js"
+    "static/css/main.3d823657.chunk.css",
+    "static/js/main.a012663a.chunk.js"
   ]
 }
