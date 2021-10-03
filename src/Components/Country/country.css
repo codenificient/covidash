@@ -11,7 +11,7 @@
 	border-radius: 15px;
 	transition: all 1s ease-in-out;
 	cursor: pointer;
-	margin-top: 4rem;
+	margin-top: 2rem;
 }
 
 .country:hover {
@@ -25,29 +25,31 @@
 }
 
 .country > img {
-	width: 33%;
+	width: 43%;
 	height: auto;
 	margin: auto;
 }
 
 .country > h2 {
 	text-align: center;
-	margin: 1.3rem;
+	margin: 1rem;
 }
 
 .country p {
 	font-weight: bold;
-	margin-bottom: 1.3rem;
+	font-size: medium;
+	margin-bottom: 2rem;
 }
 
 .cases {
-	display: grid;
+	/* display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-gap: 0.8rem;
+	grid-gap: 0.5rem; */
 	margin: auto;
-	width: 90%;
+	width: 95%;
 	font-family: 'Poppins';
 	align-self: center;
+	display: flex;
 }
 
 @media screen and (orientation: portrait) and (max-width: 767px) {

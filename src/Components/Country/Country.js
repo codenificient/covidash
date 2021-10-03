@@ -85,6 +85,10 @@ const Country = ({ stats }) => {
   flagged.set("MS Zaandam", "AH");
   flagged.set("West Bank and Gaza", "cc");
 
+  const formatNumber = (num) => {
+  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
+}
+
 //   console.log(flagged);
 const query = flagged.get(stats.name) || stats.countryCode
   return (
@@ -94,10 +98,10 @@ const query = flagged.get(stats.name) || stats.countryCode
         alt={`Flag of ${stats.name}`}
       />
       <h2>{stats.name}</h2>
-      <div className="cases">
+      <div className="cases sb">
         <p>
           {`Confirmed : `}
-          <span className="qty">{stats.total}</span>
+          <span className="qty">{formatNumber(stats.total)}</span>
         </p>
         {/* <p>
           {`Active : `}
@@ -105,7 +109,7 @@ const query = flagged.get(stats.name) || stats.countryCode
         </p> */}
         <p>
           {`Deaths : `}
-          <span className="qty">{stats.dead}</span>
+          <span className="qty">{formatNumber(stats.dead)}</span>
         </p>
         {/* <p>
           {`Recovered : `}

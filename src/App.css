@@ -42,3 +42,7 @@ a,
 .allproject {
 	margin: 7rem 0;
 }
+
+.sb {
+	justify-content: space-between;
+}
