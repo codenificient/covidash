@@ -1,5 +1,5 @@
 .country {
-	min-width: 400px;
+	min-width: 330px;
 	display: grid;
 	/* grid-template-columns: repeat(2, 1fr 1fr 1fr 1fr); */
 	flex-direction: column;
@@ -12,7 +12,6 @@
 	border-radius: 15px;
 	transition: all 1s ease-in-out;
 	cursor: pointer;
-	margin: 1rem 2rem;
 }
 
 .country:hover {
@@ -26,20 +25,20 @@
 }
 
 .country > img {
-	width: 43%;
+	width: 40%;
 	height: auto;
 	margin: auto;
 }
 
 .country > h2 {
 	text-align: center;
-	margin: 1rem;
+	margin-top: -0.3rem;
 }
 
 .country p {
-	font-weight: bold;
+	font-weight: 600;
 	font-size: medium;
-	margin-bottom: 2rem;
+	margin: 0.8rem 0 2rem;
 }
 
 .cases {
