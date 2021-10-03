@@ -1,6 +1,7 @@
 .country {
-	width: 100%;
+	min-width: 400px;
 	display: grid;
+	/* grid-template-columns: repeat(2, 1fr 1fr 1fr 1fr); */
 	flex-direction: column;
 	align-items: center;
 	background: #141e30;
@@ -11,7 +12,7 @@
 	border-radius: 15px;
 	transition: all 1s ease-in-out;
 	cursor: pointer;
-	margin-top: 2rem;
+	margin: 1rem 2rem;
 }
 
 .country:hover {
