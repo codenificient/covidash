@@ -91,11 +91,9 @@ const Country = ({ stats }) => {
 	//   console.log(flagged);
 	let query = flagged.get(stats.name) || stats.countryCode
 	query = query.toLowerCase()
-	let image = `../../images/${query}.svg`
-	console.log(image)
 	return (
 		<div className="country">
-			<img src={image} alt={`Flag of ${stats.name}`} />
+			<img src={`assets/${query}.png`} alt={`Flag of ${stats.name}`} />
 			<h2>{stats.name}</h2>
 			<div className="cases sb">
 				<p>
