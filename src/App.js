@@ -22,7 +22,7 @@ class App extends React.Component {
       )
     );
 
-    console.log(responseJSON);
+    // console.log(responseJSON);
     this.setState({
       countries: responseJSON,
     });
