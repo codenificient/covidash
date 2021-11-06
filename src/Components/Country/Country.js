@@ -93,7 +93,7 @@ const Country = ({ stats }) => {
 	query = query.toLowerCase()
 	return (
 		<div className="country">
-			<img src={`assets/${query}.png`} alt={`Flag of ${stats.name}`} />
+			<img src={`https://flagcdn.com/h120/${query}.png`} alt={`Flag of ${stats.name}`} />
 			<h2>{stats.name}</h2>
 			<div className="cases sb">
 				<p>
