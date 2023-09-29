@@ -80,7 +80,7 @@ class App extends React.Component {
 
 				<div className="allproject text-center">
 					<a
-						href="https://tioye.dev/pages/projects/allproject.html"
+						href="https://tioye.dev/portfolio"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
