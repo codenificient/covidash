@@ -1,20 +1,14 @@
 {
   "files": {
-    "main.css": "/covidash/static/css/main.fa01f280.chunk.css",
-    "main.js": "/covidash/static/js/main.31186d60.chunk.js",
-    "main.js.map": "/covidash/static/js/main.31186d60.chunk.js.map",
-    "runtime-main.js": "/covidash/static/js/runtime-main.1102bd4a.js",
-    "runtime-main.js.map": "/covidash/static/js/runtime-main.1102bd4a.js.map",
-    "static/js/2.e0b0c623.chunk.js": "/covidash/static/js/2.e0b0c623.chunk.js",
-    "static/js/2.e0b0c623.chunk.js.map": "/covidash/static/js/2.e0b0c623.chunk.js.map",
+    "main.css": "/covidash/static/css/main.48db7d1a.css",
+    "main.js": "/covidash/static/js/main.ad554ab1.js",
+    "static/media/psl.cjs": "/covidash/static/media/psl.5b3832945f301c0b8e58.cjs",
     "index.html": "/covidash/index.html",
-    "static/css/main.fa01f280.chunk.css.map": "/covidash/static/css/main.fa01f280.chunk.css.map",
-    "static/js/2.e0b0c623.chunk.js.LICENSE.txt": "/covidash/static/js/2.e0b0c623.chunk.js.LICENSE.txt"
+    "main.48db7d1a.css.map": "/covidash/static/css/main.48db7d1a.css.map",
+    "main.ad554ab1.js.map": "/covidash/static/js/main.ad554ab1.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.1102bd4a.js",
-    "static/js/2.e0b0c623.chunk.js",
-    "static/css/main.fa01f280.chunk.css",
-    "static/js/main.31186d60.chunk.js"
+    "static/css/main.48db7d1a.css",
+    "static/js/main.ad554ab1.js"
   ]
 }
