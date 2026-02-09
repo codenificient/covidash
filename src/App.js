@@ -4,7 +4,6 @@ import CountryList from "./Components/CountryList/CountryList";
 import SearchBox from "./Components/SearchBox/SearchBox";
 // Analytics will be accessed via window.analytics
 const csv = require("csvtojson");
-const request = require("request");
 class App extends React.Component {
   constructor() {
     super();
@@ -29,13 +28,12 @@ class App extends React.Component {
         });
     }
 
-    const responseJSON = await csv().fromStream(
-      request.get(
-        "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/web-data/data/cases_country.csv"
-      )
+    const response = await fetch(
+      "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/web-data/data/cases_country.csv"
     );
+    const csvText = await response.text();
+    const responseJSON = await csv().fromString(csvText);
 
-    // console.log(responseJSON);
     this.setState({
       countries: responseJSON,
     });
@@ -53,8 +51,7 @@ class App extends React.Component {
         });
     }
 
-    this.state.countries.map(async (country) => {
-      // get the latest data about each country
+    const stats = responseJSON.map((country) => {
       const total = parseInt(country.Confirmed, 10);
       const healthy = parseInt(country.Recovered, 10)
         ? parseInt(country.Recovered, 10)
@@ -62,25 +59,11 @@ class App extends React.Component {
       const dead = parseInt(country.Deaths, 10);
       const actives = total - (dead + healthy);
       const countryCode = country.ISO3.substring(0, 2);
-      // console.log(actives);
-
-      // the data is missing country name. make another request to fetch country name
       const name = country.Country_Region;
-
-      // console.log(name);
-      // console.log({ country });
-      if (country)
-        this.setState((prevState) => ({
-          stats: prevState.stats.concat({
-            name,
-            countryCode,
-            total,
-            healthy,
-            dead,
-            actives,
-          }),
-        }));
+      return { name, countryCode, total, healthy, dead, actives };
     });
+
+    this.setState({ stats });
   }
   handleChange = (e) => {
     const searchValue = e.target.value;

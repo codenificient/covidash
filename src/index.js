@@ -1,6 +1,5 @@
 import { Analytics } from "@codenificient/analytics-sdk";
-import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
@@ -162,20 +161,20 @@ const localAnalytics = {
 // Enhanced analytics wrapper that includes local fallback
 const enhancedAnalytics = {
   pageView: (...args) => {
-    analytics.pageView(...args);
     localAnalytics.store("page_view", args[1] || {});
+    return analytics.pageView(...args);
   },
   track: (...args) => {
-    analytics.track(...args);
     localAnalytics.store("track", { event: args[0], data: args[1] || {} });
+    return analytics.track(...args);
   },
   click: (...args) => {
-    analytics.click(...args);
     localAnalytics.store("click", { event: args[0], data: args[1] || {} });
+    return analytics.click(...args);
   },
   custom: (...args) => {
-    analytics.custom(...args);
     localAnalytics.store("custom", { event: args[0], data: args[1] || {} });
+    return analytics.custom(...args);
   },
 };
 
@@ -183,9 +182,4 @@ const enhancedAnalytics = {
 window.analytics = enhancedAnalytics;
 window.localAnalytics = localAnalytics;
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+createRoot(document.getElementById("root")).render(<App />);

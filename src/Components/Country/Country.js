@@ -102,7 +102,6 @@ const Country = ({ stats }) => {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
   };
 
-  //   console.log(flagged);
   let query = flagged.get(stats.name) || stats.countryCode;
   query = query.toLowerCase();
 
