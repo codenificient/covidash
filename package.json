@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://codenificient.github.io/covidash",
   "dependencies": {
-    "@codenificient/analytics-sdk": "^1.0.0",
+    "@codenificient/analytics-sdk": "^1.1.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",

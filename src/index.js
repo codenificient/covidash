@@ -3,35 +3,11 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-// Initialize analytics SDK with ad-blocker detection and error handling
-let analytics = null;
+// Analytics SDK v1.1 - resilient wrapper with local fallback
+const NAMESPACE = "covidash";
+const NOOP = () => Promise.resolve();
 
-// Check if analytics is likely to be blocked
-const isAnalyticsBlocked = () => {
-  // Check for common ad blocker indicators
-  const blockedIndicators = [
-    "adblock",
-    "uBlock",
-    "AdBlock",
-    "adblocker",
-    "privacy",
-    "ghostery",
-    "ublock",
-  ];
-
-  // Check if any blocked indicators are in the user agent or DOM
-  const userAgent = navigator.userAgent.toLowerCase();
-  const hasBlockedIndicator = blockedIndicators.some(
-    (indicator) =>
-      userAgent.includes(indicator) ||
-      document.querySelector(`[class*="${indicator}"]`) ||
-      document.querySelector(`[id*="${indicator}"]`)
-  );
-
-  return hasBlockedIndicator;
-};
-
-// Create a resilient analytics wrapper around an SDK instance
+// Resilient wrapper: retries on transient errors, skips if ad-blocked
 const createResilientAnalytics = (sdk) => {
   let isBlocked = false;
   let retryCount = 0;
@@ -39,19 +15,15 @@ const createResilientAnalytics = (sdk) => {
 
   const makeRequest = async (method, ...args) => {
     if (isBlocked || retryCount >= maxRetries) {
-      console.log("[Analytics] Skipped:", method, "(blocked or max retries)");
       return Promise.resolve();
     }
 
     try {
-      console.log("[Analytics] Calling SDK:", method, args[0]);
       const result = await sdk[method](...args);
       retryCount = 0;
-      console.log("[Analytics] Success:", method);
       return result;
     } catch (error) {
       retryCount++;
-      console.warn("[Analytics] Error:", method, error.message);
 
       if (
         error.message.includes("Failed to fetch") ||
@@ -64,7 +36,6 @@ const createResilientAnalytics = (sdk) => {
       }
 
       if (retryCount < maxRetries) {
-        console.warn(`[Analytics] Retrying ${method} (${retryCount}/${maxRetries})`);
         await new Promise((resolve) => setTimeout(resolve, 1000 * retryCount));
         return makeRequest(method, ...args);
       }
@@ -75,54 +46,57 @@ const createResilientAnalytics = (sdk) => {
   };
 
   return {
+    // v1.0 methods
     pageView: (...args) => makeRequest("pageView", ...args),
     track: (...args) => makeRequest("track", ...args),
     click: (...args) => makeRequest("click", ...args),
     custom: (...args) => makeRequest("custom", ...args),
+    trackBatch: (...args) => makeRequest("trackBatch", ...args),
+    // v1.1 methods
+    error: (...args) => makeRequest("error", ...args),
+    exception: (...args) => makeRequest("exception", ...args),
+    apiError: (...args) => makeRequest("apiError", ...args),
   };
 };
 
+// Mock analytics for when SDK is blocked or fails to init
+const mockAnalytics = {
+  pageView: NOOP, track: NOOP, click: NOOP, custom: NOOP,
+  trackBatch: NOOP, error: NOOP, exception: NOOP, apiError: NOOP,
+};
+
+let analytics = mockAnalytics;
+
+// In dev, requests go through CRA proxy (src/setupProxy.js) to avoid CORS
+// In production, requests go direct (analytics backend must allow the origin)
+const isDev = process.env.NODE_ENV === "development";
+const analyticsEndpoint = isDev
+  ? "/api/analytics"
+  : "https://analytics-dashboard-phi-six.vercel.app/api";
+
 try {
-  if (!isAnalyticsBlocked()) {
-    console.log("[Analytics] Initializing SDK...");
-    const sdk = new Analytics({
-      apiKey: "proj_covidash_analytics_key",
-      endpoint: "https://analytics-dashboard-phi-six.vercel.app/api/analytics",
-      debug: false,
-    });
-    console.log("[Analytics] SDK created, wrapping with resilient layer");
+  const sdk = new Analytics({
+    apiKey: "proj_covidash_analytics_key",
+    endpoint: analyticsEndpoint,
+    debug: isDev,
+  });
 
-    analytics = createResilientAnalytics(sdk);
+  analytics = createResilientAnalytics(sdk);
 
-    analytics.pageView(window.location.pathname, {
-      page_title: "COVID-19 Dashboard",
-      app_name: "CoviDash",
-    });
-  } else {
-    console.log("[Analytics] Skipped - ad blocker detected");
-    analytics = {
-      pageView: () => Promise.resolve(),
-      track: () => Promise.resolve(),
-      click: () => Promise.resolve(),
-      custom: () => Promise.resolve(),
-    };
-  }
-} catch (error) {
-  console.warn("[Analytics] Initialization failed:", error);
-  analytics = {
-    pageView: () => Promise.resolve(),
-    track: () => Promise.resolve(),
-    click: () => Promise.resolve(),
-    custom: () => Promise.resolve(),
-  };
+  analytics.pageView(window.location.pathname, {
+    page_title: "COVID-19 Dashboard",
+    app_name: "CoviDash",
+  });
+} catch (err) {
+  console.warn("[Analytics] Initialization failed:", err);
 }
 
-// Add local analytics fallback for when main analytics is blocked
+// Local storage fallback for offline/blocked scenarios
 const localAnalytics = {
   store: (event, data) => {
     try {
       const events = JSON.parse(
-        localStorage.getItem("local_analytics") || "[]"
+        localStorage.getItem("local_analytics") || "[]",
       );
       events.push({
         event,
@@ -132,48 +106,50 @@ const localAnalytics = {
       });
       localStorage.setItem(
         "local_analytics",
-        JSON.stringify(events.slice(-100))
-      ); // Keep last 100 events
-    } catch (error) {
-      console.warn("Local analytics storage failed:", error);
+        JSON.stringify(events.slice(-100)),
+      );
+    } catch (e) {
+      // localStorage unavailable
     }
   },
-
   getEvents: () => {
     try {
       return JSON.parse(localStorage.getItem("local_analytics") || "[]");
-    } catch (error) {
+    } catch (e) {
       return [];
     }
   },
-
-  clearEvents: () => {
-    localStorage.removeItem("local_analytics");
-  },
+  clearEvents: () => localStorage.removeItem("local_analytics"),
 };
 
-// Enhanced analytics wrapper that includes local fallback
-const enhancedAnalytics = {
-  pageView: (...args) => {
-    localAnalytics.store("page_view", args[1] || {});
-    return analytics.pageView(...args);
+// Public API: wraps SDK calls with namespace injection + local fallback
+// App calls track(eventType, props) → SDK gets track(namespace, eventType, props)
+window.analytics = {
+  pageView: (page, properties) => {
+    localAnalytics.store("page_view", { page, ...properties });
+    return analytics.pageView(page, properties);
   },
-  track: (...args) => {
-    localAnalytics.store("track", { event: args[0], data: args[1] || {} });
-    return analytics.track(...args);
+  track: (eventType, properties) => {
+    localAnalytics.store("track", { event: eventType, ...properties });
+    return analytics.track(NAMESPACE, eventType, properties);
   },
-  click: (...args) => {
-    localAnalytics.store("click", { event: args[0], data: args[1] || {} });
-    return analytics.click(...args);
+  click: (element, properties) => {
+    localAnalytics.store("click", { element, ...properties });
+    return analytics.click(element, properties);
   },
-  custom: (...args) => {
-    localAnalytics.store("custom", { event: args[0], data: args[1] || {} });
-    return analytics.custom(...args);
+  custom: (eventType, properties) => {
+    localAnalytics.store("custom", { event: eventType, ...properties });
+    return analytics.custom(NAMESPACE, eventType, properties);
+  },
+  error: (errorType, properties) => {
+    localAnalytics.store("error", { errorType, ...properties });
+    return analytics.error(errorType, properties);
+  },
+  exception: (err, properties) => {
+    localAnalytics.store("exception", { message: err.message });
+    return analytics.exception(err, properties);
   },
 };
-
-// Make analytics available globally for other components
-window.analytics = enhancedAnalytics;
 window.localAnalytics = localAnalytics;
 
 createRoot(document.getElementById("root")).render(<App />);
