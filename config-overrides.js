@@ -23,5 +23,10 @@ module.exports = function override(config, env) {
     }),
   ]);
 
+  // Suppress source map warnings from analytics-sdk
+  config.ignoreWarnings = [
+    { module: /@codenificient\/analytics-sdk/ },
+  ];
+
   return config;
 };

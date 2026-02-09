@@ -31,49 +31,45 @@ const isAnalyticsBlocked = () => {
   return hasBlockedIndicator;
 };
 
-// Create a resilient analytics wrapper
-const createResilientAnalytics = () => {
+// Create a resilient analytics wrapper around an SDK instance
+const createResilientAnalytics = (sdk) => {
   let isBlocked = false;
   let retryCount = 0;
   const maxRetries = 3;
 
   const makeRequest = async (method, ...args) => {
     if (isBlocked || retryCount >= maxRetries) {
-      console.log("Analytics request skipped (blocked or max retries reached)");
+      console.log("[Analytics] Skipped:", method, "(blocked or max retries)");
       return Promise.resolve();
     }
 
     try {
-      const result = await analytics[method](...args);
-      retryCount = 0; // Reset retry count on success
+      console.log("[Analytics] Calling SDK:", method, args[0]);
+      const result = await sdk[method](...args);
+      retryCount = 0;
+      console.log("[Analytics] Success:", method);
       return result;
     } catch (error) {
       retryCount++;
+      console.warn("[Analytics] Error:", method, error.message);
 
-      // Check if it's a blocking error
       if (
         error.message.includes("Failed to fetch") ||
         error.message.includes("ERR_BLOCKED_BY_ADBLOCKER") ||
         error.message.includes("ERR_NETWORK_CHANGED")
       ) {
         isBlocked = true;
-        console.log("Analytics blocked by ad blocker or network issue");
+        console.log("[Analytics] Blocked by ad blocker or network issue");
         return Promise.resolve();
       }
 
-      // For other errors, retry
       if (retryCount < maxRetries) {
-        console.warn(
-          `Analytics ${method} failed, retrying... (${retryCount}/${maxRetries})`
-        );
-        await new Promise((resolve) => setTimeout(resolve, 1000 * retryCount)); // Exponential backoff
+        console.warn(`[Analytics] Retrying ${method} (${retryCount}/${maxRetries})`);
+        await new Promise((resolve) => setTimeout(resolve, 1000 * retryCount));
         return makeRequest(method, ...args);
       }
 
-      console.warn(
-        `Analytics ${method} failed after ${maxRetries} retries:`,
-        error
-      );
+      console.warn(`[Analytics] ${method} failed after ${maxRetries} retries`);
       return Promise.resolve();
     }
   };
@@ -87,24 +83,23 @@ const createResilientAnalytics = () => {
 };
 
 try {
-  // Only initialize if not likely to be blocked
   if (!isAnalyticsBlocked()) {
-    analytics = new Analytics({
+    console.log("[Analytics] Initializing SDK...");
+    const sdk = new Analytics({
       apiKey: "proj_covidash_analytics_key",
       endpoint: "https://analytics-dashboard-phi-six.vercel.app/api/analytics",
-      debug: false, // Disable debug to reduce noise
+      debug: false,
     });
+    console.log("[Analytics] SDK created, wrapping with resilient layer");
 
-    // Wrap with resilient analytics
-    analytics = createResilientAnalytics();
+    analytics = createResilientAnalytics(sdk);
 
-    // Track page view on app load
     analytics.pageView(window.location.pathname, {
       page_title: "COVID-19 Dashboard",
       app_name: "CoviDash",
     });
   } else {
-    console.log("Analytics skipped - ad blocker detected");
+    console.log("[Analytics] Skipped - ad blocker detected");
     analytics = {
       pageView: () => Promise.resolve(),
       track: () => Promise.resolve(),
@@ -113,8 +108,7 @@ try {
     };
   }
 } catch (error) {
-  console.warn("Analytics initialization failed:", error);
-  // Create a mock analytics object
+  console.warn("[Analytics] Initialization failed:", error);
   analytics = {
     pageView: () => Promise.resolve(),
     track: () => Promise.resolve(),

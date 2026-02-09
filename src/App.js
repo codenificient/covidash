@@ -65,22 +65,30 @@ class App extends React.Component {
 
     this.setState({ stats });
   }
+  searchDebounceTimer = null;
+
   handleChange = (e) => {
     const searchValue = e.target.value;
     this.setState({ searchField: searchValue });
 
-    // Track search interactions
-    if (searchValue.length > 0 && window.analytics) {
+    if (!window.analytics) return;
+
+    clearTimeout(this.searchDebounceTimer);
+    this.searchDebounceTimer = setTimeout(() => {
+      const results = this.state.stats.filter((stat) =>
+        stat.name.toLowerCase().includes(searchValue.toLowerCase())
+      );
       window.analytics
-        .track("search_performed", {
+        .track(searchValue.length > 0 ? "search_performed" : "search_cleared", {
           app_name: "CoviDash",
           search_term: searchValue,
           search_length: searchValue.length,
+          results_count: results.length,
         })
         .catch((error) => {
           console.warn("Analytics track failed:", error);
         });
-    }
+    }, 500);
   };
 
   render() {
