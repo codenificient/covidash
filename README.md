@@ -2,7 +2,7 @@
 
 A COVID-19 statistics dashboard built with React 19 that displays per-country case data with flags, powered by archived data from Johns Hopkins University CSSE.
 
-[![Live Site](https://api.microlink.io/?url=https%3A%2F%2Fcodenificient.github.io%2Fcovidash%2F&screenshot=true&meta=false&embed=screenshot.url&delay=3000)](https://codenificient.github.io/covidash/)
+[![Live Site](https://api.microlink.io/?url=https%3A%2F%2Fcodenificient.github.io%2Fcovidash%2F&screenshot=true&meta=false&embed=screenshot.url&screenshot.delay=3000)](https://codenificient.github.io/covidash/)
 
 ## Live Demo
 
