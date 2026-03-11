@@ -72,7 +72,7 @@ let analytics = mockAnalytics;
 const isDev = process.env.NODE_ENV === "development";
 const analyticsEndpoint = isDev
   ? "/api/analytics"
-  : "https://analytics-dashboard-phi-six.vercel.app/api";
+  : "https://codenalytics.vercel.app/api";
 
 try {
   const sdk = new Analytics({
