@@ -21,7 +21,7 @@ class App extends React.Component {
       window.analytics
         .track("data_loading_started", {
           app_name: "CoviDash",
-          data_source: "John Hopkins University",
+          data_source: "Johns Hopkins University",
         })
         .catch((error) => {
           console.warn("Analytics track failed:", error);
@@ -44,7 +44,7 @@ class App extends React.Component {
         .track("data_loading_completed", {
           app_name: "CoviDash",
           countries_loaded: responseJSON.length,
-          data_source: "John Hopkins University",
+          data_source: "Johns Hopkins University",
         })
         .catch((error) => {
           console.warn("Analytics track failed:", error);
@@ -112,7 +112,7 @@ class App extends React.Component {
                   app_name: "CoviDash",
                   link_type: "data_source",
                   link_url: "https://github.com/CSSEGISandData/COVID-19",
-                  link_text: "John Hopkins University",
+                  link_text: "Johns Hopkins University",
                 })
                 .catch((error) => {
                   console.warn("Analytics track failed:", error);
