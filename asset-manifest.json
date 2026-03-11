@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/covidash/static/css/main.48db7d1a.css",
-    "main.js": "/covidash/static/js/main.cdac6167.js",
+    "main.js": "/covidash/static/js/main.f20d8f5d.js",
     "index.html": "/covidash/index.html",
     "main.48db7d1a.css.map": "/covidash/static/css/main.48db7d1a.css.map",
-    "main.cdac6167.js.map": "/covidash/static/js/main.cdac6167.js.map"
+    "main.f20d8f5d.js.map": "/covidash/static/js/main.f20d8f5d.js.map"
   },
   "entrypoints": [
     "static/css/main.48db7d1a.css",
-    "static/js/main.cdac6167.js"
+    "static/js/main.f20d8f5d.js"
   ]
 }
