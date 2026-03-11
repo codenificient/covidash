@@ -119,7 +119,7 @@ class App extends React.Component {
                 })
             }
           >
-            John Hopkins University
+            Johns Hopkins University
           </a>{" "}
           and flags from{" "}
           <a
