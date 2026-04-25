@@ -1,10 +1,11 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "covidash",
       "dependencies": {
-        "@codenificient/analytics-sdk": "^1.1.0",
+        "@codenificient/analytics-sdk": "^2.0.0",
         "@testing-library/jest-dom": "^6.9.1",
         "@testing-library/react": "^16.3.2",
         "@testing-library/user-event": "^14.6.1",
@@ -288,7 +289,7 @@
 
     "@bcoe/v8-coverage": ["@bcoe/v8-coverage@0.2.3", "", {}, "sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw=="],
 
-    "@codenificient/analytics-sdk": ["@codenificient/analytics-sdk@1.1.0", "", { "peerDependencies": { "typescript": "^5.0.0" } }, "sha512-2cGeU2YbaCk8xgokeEhyid6mLQ8JWd/fD053bwX1rfyLNsvPbq1OBiD5ljTSxM+2KCU9aNNwe3wAuIF3mwkoGg=="],
+    "@codenificient/analytics-sdk": ["@codenificient/analytics-sdk@2.0.0", "", { "peerDependencies": { "typescript": "^5.0.0" } }, "sha512-CwpoyNcbWNtZRHB3mLrLncI4mNycBLdPPeajr415mNos61RurpMgMyVhyeVdOCWl+FMC2r/Vir7FW4glgnkrwg=="],
 
     "@csstools/normalize.css": ["@csstools/normalize.css@12.1.1", "", {}, "sha512-YAYeJ+Xqh7fUou1d1j9XHl44BmsuThiTr4iNrgCQ3J27IbhXsxXDGZ1cXv8Qvs99d4rBbLiSKy3+WZiet32PcQ=="],
 
